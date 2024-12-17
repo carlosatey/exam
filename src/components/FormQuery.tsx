@@ -2,9 +2,11 @@ import { Formik, Form, Field } from 'formik';
 import { Text, Box, Input, Button } from "@chakra-ui/react";
 import { Dropzone } from "./Dropzone";
 import { useExam } from '../hooks/useExam';
+import { useContext } from 'react';
 //import { useQuery } from "@tanstack/react-query";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { DataContext } from '../context/useContext';
 import * as Yup from 'yup'; 
 
 const validationSchema = Yup.object().shape({
@@ -27,6 +29,7 @@ const FormQuery = () => {
     const {postDataExam} = useExam();
     const [isLoading, setIsLoading] = useState(false)
     const navigate = useNavigate()
+    const {setData } = useContext(DataContext);
 
     return (
         <Formik
@@ -48,6 +51,10 @@ const FormQuery = () => {
                 setIsLoading(true)
           
                 postDataExam(values.tenant, values.token, values?.file)
+                .then(response => {
+                    console.log(response)
+                    setData(response)
+                })
                 .finally(() => {
                     setIsLoading(false)
                     navigate("/exam");
