@@ -108,7 +108,7 @@ const FormQuery = () => {
                             mb="3px"
                         >{errors.file}</Text>
 
-                        <Button isLoading={isLoading} type="submit">Crear</Button>
+                        <Button isLoading={isLoading} colorScheme='green' type="submit">Crear</Button>
                     </Box>
                 </Form>
             )}

@@ -1,4 +1,4 @@
-import {Flex,Text} from "@chakra-ui/react"
+import {Flex,Text, OrderedList, ListItem} from "@chakra-ui/react"
 import { useContext } from 'react';
 import { DataContext } from "../context/useContext";
 
@@ -9,16 +9,16 @@ const Exam = () => {
     return (
         <>
             <Text mb="20px" fontSize="28px" fontWeight="600">Examen</Text>
-            <Flex>
+            <Flex flexDirection="column" gap="60px">
                 {data.preguntas.map((pregunta) => (
-                    <div key={pregunta.id}>
-                        <h3>{pregunta.texto}</h3>
-                        <ul>
+                    <Flex key={pregunta.id} flexDirection="column" gap="20px">
+                        <Text fontSize="16px" fontWeight="600">{pregunta.texto}</Text>
+                        <OrderedList>
                             {pregunta.opciones.map((opcion, index) => (
-                                <li key={index}>{opcion}</li>
+                                <ListItem key={index}>{opcion}</ListItem>
                             ))}
-                        </ul>
-                    </div>
+                        </OrderedList>
+                    </Flex>
                 ))}
             </Flex>
         </>
