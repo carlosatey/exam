@@ -1,10 +1,10 @@
-interface Question {
+export interface Question {
     id: number;
     texto: string;
     opciones: string[];
 }
 
-interface Answer {
+export interface Answer {
     id: number;
     respuestaCorrecta: number;
     explicacion: string;
