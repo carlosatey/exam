@@ -2,12 +2,11 @@
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ChakraProvider} from '@chakra-ui/react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter} from "react-router-dom";
 import { DataContext } from "./context/useContext";
 import { useState } from "react";
-import { Home } from "./pages/Home";
-import { Exam } from "./pages/Exam";
-import { QuizData } from "./context/useContext";
+import { RouterController } from "./routerController/routerController";
+import { QuizData } from "./interface/QuizData";
 import './App.css'
 
 function App() {
@@ -19,12 +18,8 @@ function App() {
       <DataContext.Provider value={{ data, setData }}>
         <QueryClientProvider client={queryClient}> 
           <BrowserRouter>
-            <Routes>
-              <Route>
-                <Route path="/" element={<Home/>} />
-                <Route path="/exam" element={<Exam/>} />
-              </Route>
-            </Routes>
+            <RouterController>
+            </RouterController>
           </BrowserRouter>
           <ReactQueryDevtools/>
         </QueryClientProvider> 

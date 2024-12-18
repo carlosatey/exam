@@ -3,7 +3,6 @@ import { Text, Box, Input, Button } from "@chakra-ui/react";
 import { Dropzone } from "./Dropzone";
 import { useExam } from '../hooks/useExam';
 import { useContext } from 'react';
-//import { useQuery } from "@tanstack/react-query";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DataContext } from '../context/useContext';

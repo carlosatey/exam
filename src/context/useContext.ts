@@ -1,25 +1,10 @@
 import React, { Dispatch, SetStateAction, useContext } from "react";
+import { QuizData } from "../interface/QuizData";
 
-interface Question {
-    id: number;
-    texto: string;
-    opciones: string[];
-}
-
-interface Answer {
-    id: number;
-    respuestaCorrecta: number;
-    explicacion: string;
-}
-
-export interface QuizData {
-    preguntas: Question[];
-    respuestas: Answer[];
-}
 
 interface DataContext {
     data: QuizData;
-    setData: Dispatch<SetStateAction<any>>;
+    setData: Dispatch<SetStateAction<QuizData>>;
 }
 
 export const DataContext = React.createContext<DataContext>({
