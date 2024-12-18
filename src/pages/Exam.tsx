@@ -12,21 +12,21 @@ const Exam = () => {
     };
 
     return (
-        <Flex flexDirection="column" w="100vw" h="100vh" alignItems="center" justifyContent="center">
-            <Text mb="20px" fontSize="28px" fontWeight="600">Examen</Text>
+        <Flex flexDirection="column" w="100vw" alignItems="center" justifyContent="center">
+            <Text mt="20px" mb="20px" fontSize="28px" fontWeight="600">Examen</Text>
             <Accordion allowToggle w="70vw">
                 {data.preguntas.map((pregunta) => {
                     const respuesta = obtenerRespuesta(pregunta.id);
                     return (
                         <AccordionItem key={pregunta.id}>
-                            <h2>
+                            <Text fontSize="28px">
                                 <AccordionButton>
                                     <Box as='span' flex='1' textAlign='left'>
                                         {pregunta.texto}
                                     </Box>
                                     <AccordionIcon />
                                 </AccordionButton>
-                            </h2>
+                            </Text>
                             <AccordionPanel pb={4}>
                                 <OrderedList mb={4}>
                                     {pregunta.opciones.map((opcion, index) => (
@@ -41,8 +41,8 @@ const Exam = () => {
                                 </OrderedList>
                                 {respuesta && (
                                     <Box mt={2}>
-                                        <Text fontWeight="bold">Explicación:</Text>
-                                        <Text>{respuesta.explicacion}</Text>
+                                        <Text fontWeight="bold" textAlign='center'>Explicación:</Text>
+                                        <Text bg="green.500" borderRadius="5px" color="white" textAlign='center'>{respuesta.explicacion}</Text>
                                     </Box>
                                 )}
                             </AccordionPanel>

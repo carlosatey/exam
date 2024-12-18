@@ -29,12 +29,14 @@ const FormQuery = () => {
     const [isLoading, setIsLoading] = useState(false)
     const navigate = useNavigate()
     const {setData } = useContext(DataContext);
+    const token = import.meta.env.VITE_API_TOKEN;
+    const tenant = import.meta.env.VITE_TENANT;
 
     return (
         <Formik
             initialValues={{
-                token: 'NjU2.-bmHoTDLJHeD7bMC9LWgYmIRocjoE1H5Xlo_8n_ZIxN9xX_UQtT-USNdl5Xn',
-                tenant: 'imaginabeta',
+                token: token ?? '',
+                tenant: tenant ?? '',
                 file: ''
             }}
             validationSchema={validationSchema}
@@ -42,16 +44,10 @@ const FormQuery = () => {
             validateOnChange={false}
             validateOnBlur={false}
             onSubmit={values => {
-                console.log('Valores antes de enviar:', {
-                    tenant: values.tenant,
-                    token: values.token,
-                    file: values.file,
-                });
                 setIsLoading(true)
           
                 postDataExam(values.tenant, values.token, values?.file)
                 .then(response => {
-                    console.log(response)
                     setData(response)
                 })
                 .finally(() => {
@@ -77,7 +73,7 @@ const FormQuery = () => {
                             color="red.500"
                             fontSize="12px"
                             mb="3px"
-                        >{errors.token}</Text>
+                        >{errors.token as string ?? ''}</Text>
 
                         <Text>Tenant</Text>
                         <Input
@@ -92,7 +88,7 @@ const FormQuery = () => {
                             color="red.500"
                             fontSize="12px"
                             mb="3px"
-                        >{errors.tenant}</Text>
+                        >{errors.tenant as string ?? ''}</Text>
 
                         <Field name="file">
                             {({ field, form }: any) => (
